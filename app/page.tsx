@@ -1,7 +1,7 @@
 "use client";
 
 import Head from 'next/head';
-import LoginForm from '../app/components/loginform';
+import LoginForm from './loginpage/components/loginform';
 
 export default function Home() {
   return (

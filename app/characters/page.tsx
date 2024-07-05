@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import CharacterSlider from '../components/charactersslider';
+import CharacterSlider from './components/charactersslider';
 
 export default function Home() {
   return (
