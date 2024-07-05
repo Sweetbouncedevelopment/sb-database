@@ -6,3 +6,24 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model DatabankUsers {
+  lisence    String   @id @unique
+  peper      String   @db.VarChar(45)
+  password   String   @db.VarChar(60)
+  admin      Boolean
+  istemppass Bytes?   @db.Bit(1)
+  lastlogin  DateTime
+
+  logs DatabankLogs[]
+}
+
+model DatabankLogs {
+  id          Int      @id @unique @default(autoincrement())
+  lisence     String
+  action      Int
+  description String
+  time        DateTime
+
+  user DatabankUsers @relation(fields: [lisence], references: [lisence])
+}
