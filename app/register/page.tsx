@@ -1,10 +1,10 @@
-import LoginForm from './loginpage/components/loginform';
-import Style from './loginpage/components/loginform.module.css'
+import Style from './registerpage.module.css';
+import RegisterForm from './components/registerform'
 
 export default function Home() {
   return (
     <body className={Style.backgroundimg}>
-      <LoginForm/>
+      <RegisterForm/>
       <footer className={Style.footer}>
         <p>&copy; Made by Sweetbounce</p>
       </footer>

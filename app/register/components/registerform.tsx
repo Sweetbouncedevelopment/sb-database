@@ -1,43 +1,44 @@
 "use client";
-import React, { use, useState } from 'react';
+
+import { useState } from 'react';
+import Style from './registerform.module.css';
 import Image from 'next/image';
-import Style from './loginform.module.css';
 
 
-interface LoginFormProps {
+interface RegisterFormProps {
   // Define any props here if needed
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ /* destructure props here if needed */ }) => {
+const RegisterForm: React.FC<RegisterFormProps> = ({ /* destructure props here if needed */ }) => {
   const [error, setError] = useState<string>('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = {
-      name: formData.get('name'),
+      username: formData.get('username'),
       password: formData.get('password')
     };
 
     try {
 
     } catch (error) {
-      setError('Er is iets fout gegaan bij het inloggen. Probeer het opnieuw.');
+      setError('Er is iets fout gegaan bij het maken van je account. Probeer het opnieuw.');
     }
   };
 
   return (
-    <section className={Style.login}>
-      <h1>LOG IN OP UW ACCOUNT</h1>
+    <section className={Style.register}>
+      <h1>Registreer je account</h1>
       <hr />
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <input type="hidden" name="type" value="login" />
+        <input type="hidden" name="type" value="register" />
         <label>
           <i className={Style.asicon}>
             <Image src="/asicon/user.svg" alt="user" height={100} width={40}/>
           </i>
-          <input type="text" name="name" placeholder="Gebruikersnaam..." required />
+          <input type="text" name="username" placeholder="Gebruikersnaam..." required />
         </label>
         <label>
           <i className={Style.asicon}>
@@ -45,20 +46,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ /* destructure props here if need
           </i>
           <input type="password" name="password" placeholder="Wachtwoord..." required />
         </label>
-        <button className={Style.loginsubmit} type="submit">
+        <button className={Style.registersubmit} type="submit">
           <i className={Style.asicon}>
-            <Image src="/asicon/login.svg" alt="login" height={100} width={40} />
+            <Image src="/asicon/login.svg" alt="registreer" height={100} width={40} />
           </i>
-          <span>INLOGGEN</span>
+          <span>Registreren</span>
         </button>
-      </form>
-      <p className={Style.explainer}>
-        Hier kunt u inloggen met uw Databank account.
-        Heeft u deze niet? Maak dan een nieuw account aan.
-      </p>    
-      <a href="/register" className={Style.registerbutton}>Register Account</a>
+      </form>  
     </section>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
