@@ -8,7 +8,7 @@ generator client {
 }
 
 model DatabankUsers {
-  lisence    String   @id @unique
+  username   String   @id @unique
   peper      String   @db.VarChar(45)
   password   String   @db.VarChar(60)
   admin      Boolean
@@ -20,10 +20,10 @@ model DatabankUsers {
 
 model DatabankLogs {
   id          Int      @id @unique @default(autoincrement())
-  lisence     String
+  username    String
   action      Int
   description String
   time        DateTime
 
-  user DatabankUsers @relation(fields: [lisence], references: [lisence])
+  user DatabankUsers @relation(fields: [username], references: [username])
 }
