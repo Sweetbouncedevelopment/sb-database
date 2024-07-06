@@ -33,31 +33,35 @@ const LoginForm: React.FC<LoginFormProps> = ({ /* destructure props here if need
       <form onSubmit={handleSubmit}>
         <input type="hidden" name="type" value="login" />
         <label>
-          <i className={Style.asicon}><Image src="/databank/asicon/user.svg" alt="user" /></i>
+          <i className={Style.asicon}>
+            <Image src="/databank/asicon/user.svg" alt="user"/>
+          </i>
           <input type="text" name="name" placeholder="Naam..." required />
         </label>
         <label>
-          <i className={Style.asicon}><img src="/databank/asicon/closedlock.svg" alt="closedlock" /></i>
+          <i className={Style.asicon}>
+            <Image src="/databank/asicon/closedlock.svg" alt="closedlock" />
+            </i>
           <input type="password" name="password" placeholder="Wachtwoord..." required />
         </label>
-        <button id="login-submit" type="submit">
-          <i className="asicon asicon-login"><Image src="/databank/asicon/login.svg" alt="login" /></i>
+        <button className={Style.loginsubmit} type="submit">
+          <i className={Style.asicon}><Image src="/databank/asicon/login.svg" alt="login" /></i>
           INLOGGEN
         </button>
       </form>
-      <p>
+      <p className={Style.explainer}>
         Hier kunt u inloggen met uw Databank account.
         Heeft u deze niet? Maak dan in-game een nieuw account aan.
       </p>
       <form>
-        <label className="register">
+        <label>
           <input type="text" placeholder="/databank wachtwoord" required />
-          <button type="submit">
-            <i className="asicon"><Image src="/databank/asicon/document.svg" alt="document" /></i>
+          <button className={Style.registerbutton}type="submit">
+            <i className={Style.asicon}><Image src="/databank/asicon/document.svg" alt="document" /></i>
           </button>
         </label>
       </form>
-      <p id="explainer">
+      <p className={Style.explainer}>
         Druk op het icoontje om de command te kopiëren,
         voer dit uit in de server en ontvang een tijdelijk wachtwoord.
       </p>
