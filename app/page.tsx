@@ -6,7 +6,7 @@ export default function Home() {
     <body className={Style.backgroundimg}>
       <LoginForm/>
       <footer className={Style.footer}>
-        <p>&copy; Made by test</p>
+        <p>&copy; Made by Sweetbounce</p>
       </footer>
     </body>
   );
