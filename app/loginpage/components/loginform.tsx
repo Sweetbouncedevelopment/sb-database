@@ -41,11 +41,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ /* destructure props here if need
         <label>
           <i className={Style.asicon}>
             <Image src="/databank/asicon/closedlock.svg" alt="closedlock" />
-            </i>
+          </i>
           <input type="password" name="password" placeholder="Wachtwoord..." required />
         </label>
         <button className={Style.loginsubmit} type="submit">
-          <i className={Style.asicon}><Image src="/databank/asicon/login.svg" alt="login" /></i>
+          <i className={Style.asicon}>
+            <Image src="/databank/asicon/login.svg" alt="login" />
+          </i>
           INLOGGEN
         </button>
       </form>
@@ -57,7 +59,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ /* destructure props here if need
         <label>
           <input type="text" placeholder="/databank wachtwoord" required />
           <button className={Style.registerbutton}type="submit">
-            <i className={Style.asicon}><Image src="/databank/asicon/document.svg" alt="document" /></i>
+            <i className={Style.asicon}>
+              <Image src="/databank/asicon/document.svg" alt="document" />
+            </i>
           </button>
         </label>
       </form>
