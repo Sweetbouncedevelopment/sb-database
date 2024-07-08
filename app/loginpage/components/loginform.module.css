@@ -3,13 +3,12 @@
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
-    background-color: #474747;
-    background-image: url('/public/images/AstiqBlur.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     width: 100vw;
     height: 100vh;
+    background-image: url('/images/AstiqBlur.png');
   }
 
  .footer{

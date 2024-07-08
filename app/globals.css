@@ -27,7 +27,7 @@ body{
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: #474747;
+  background-color: #474747; 
   display: flex;
   flex-wrap: wrap;
 }
