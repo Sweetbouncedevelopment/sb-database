@@ -3,6 +3,8 @@ import React, { use, useState } from 'react';
 import Image from 'next/image';
 import Style from './loginform.module.css';
 
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 interface LoginFormProps {
   // Define any props here if needed

@@ -1,29 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model DatabankUsers {
-  username   String   @id @unique
-  peper      String   @db.VarChar(45)
-  password   String   @db.VarChar(60)
+  username   String         @id @unique(map: "username_UNIQUE")
+  password   String         @db.VarChar(60)
   admin      Boolean
-  istemppass Bytes?   @db.Bit(1)
+  istemppass Boolean?       @db.Bit(1)
   lastlogin  DateTime
-
-  logs DatabankLogs[]
+  logs       DatabankLogs[]
 }
 
 model DatabankLogs {
-  id          Int      @id @unique @default(autoincrement())
+  id          Int           @id @unique @default(autoincrement())
   username    String
   action      Int
   description String
   time        DateTime
+  user        DatabankUsers @relation(fields: [username], references: [username], onDelete: NoAction, onUpdate: NoAction, map: "fk_logs_users")
 
-  user DatabankUsers @relation(fields: [username], references: [username])
+  @@index([username], map: "fk_logs_users_idx")
 }
