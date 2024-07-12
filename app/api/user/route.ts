@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/app/api/db";
-import { hash } from 'bcrypt';
+import { hash, compareSync } from 'bcrypt';
 
 
 export async function POST(req: Request) {
