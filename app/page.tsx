@@ -1,13 +1,13 @@
-import LoginForm from './loginpage/components/loginform';
-import Style from './loginpage/components/loginform.module.css'
+import LoginForm from "./loginpage/components/loginform";
+import Style from "./loginpage/components/loginform.module.css";
 
 export default function Home() {
   return (
-    <body className={Style.backgroundimg}>
-      <LoginForm/>
+    <>
+      <LoginForm />
       <footer className={Style.footer}>
         <p>&copy; Made by Sweetbounce</p>
       </footer>
-    </body>
+    </>
   );
 }
