@@ -1,10 +1,9 @@
 "use client";
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Style from './loginform.module.css';
-
-import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 interface LoginFormProps {
   // Define any props here if needed
@@ -12,17 +11,28 @@ interface LoginFormProps {
 
 const LoginForm: React.FC<LoginFormProps> = ({ /* destructure props here if needed */ }) => {
   const [error, setError] = useState<string>('');
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = {
-      name: formData.get('name'),
-      password: formData.get('password')
+      username: formData.get('username') as string,
+      password: formData.get('password') as string
     };
 
     try {
+      const result = await signIn('credentials', {
+        redirect: false,
+        username: data.username,
+        password: data.password
+      });
 
+      if (!result?.ok) {
+        setError('Dit zijn onjuiste gegevens.');
+      } else {
+        router.push('/characters');
+      }
     } catch (error) {
       setError('Er is iets fout gegaan bij het inloggen. Probeer het opnieuw.');
     }
@@ -37,9 +47,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ /* destructure props here if need
         <input type="hidden" name="type" value="login" />
         <label>
           <i className={Style.asicon}>
-            <Image src="/asicon/user.svg" alt="user" height={100} width={40}/>
+            <Image src="/asicon/user.svg" alt="user" height={100} width={40} />
           </i>
-          <input type="text" name="name" placeholder="Gebruikersnaam..." required />
+          <input type="text" name="username" placeholder="Gebruikersnaam..." required />
         </label>
         <label>
           <i className={Style.asicon}>
@@ -47,17 +57,19 @@ const LoginForm: React.FC<LoginFormProps> = ({ /* destructure props here if need
           </i>
           <input type="password" name="password" placeholder="Wachtwoord..." required />
         </label>
-        <button className={Style.loginsubmit} type="submit">
-          <i className={Style.asicon}>
-            <Image src="/asicon/login.svg" alt="login" height={100} width={40} />
-          </i>
-          <span>INLOGGEN</span>
-        </button>
+        <div className={Style.loginsubmit}>
+          <button type="submit">
+            <i className={Style.asicon}>
+              <Image src="/asicon/login.svg" alt="login" height={100} width={40} />
+            </i>
+            <span>INLOGGEN</span>
+          </button>
+        </div>
       </form>
       <p className={Style.explainer}>
         Hier kunt u inloggen met uw Databank account.
         Heeft u deze niet? Maak dan een nieuw account aan.
-      </p>    
+      </p>
       <a href="/register" className={Style.registerbutton}>Register Account</a>
     </section>
   );
